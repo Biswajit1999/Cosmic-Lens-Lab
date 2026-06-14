@@ -3,11 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CosmicLens Lab: browser-native gravitational lensing laboratory." />
-    <title>CosmicLens Lab</title>
+
+    <title>CosmicLens Lab — Interactive Gravitational Lensing Laboratory</title>
+    <meta
+      name="description"
+      content="CosmicLens Lab is a browser-native gravitational-lensing laboratory for exploring Einstein rings, caustics, critical curves, magnification maps, time delays, and strong-lensing model behaviour."
+    />
+    <meta
+      name="keywords"
+      content="gravitational lensing, Einstein ring, caustics, dark matter, astrophysics, cosmology, TypeScript, WebGL, WebGPU, scientific visualisation"
+    />
+    <meta name="author" content="Biswajit Jana" />
+    <meta name="theme-color" content="#020617" />
+
+    <meta property="og:title" content="CosmicLens Lab" />
+    <meta
+      property="og:description"
+      content="A browser-native gravitational-lensing laboratory for Einstein rings, caustics, magnification maps, and time-delay visualisation."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" href="data:," />
   </head>
+
   <body>
-    <div id="root"></div>
+    <noscript>
+      CosmicLens Lab requires JavaScript because the gravitational-lensing renderer,
+      animation engine, and interactive controls run in the browser.
+    </noscript>
+
+    <main id="root" aria-label="CosmicLens Lab interactive application"></main>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

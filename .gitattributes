@@ -1,0 +1,6 @@
+# Keep GitHub language statistics focused on source code, not generated or documentation-heavy files.
+docs/** linguist-documentation
+examples/**/*.json linguist-documentation
+tests/fixtures/** linguist-documentation
+package-lock.json linguist-generated=true
+apps/web/dist/** linguist-generated=true
