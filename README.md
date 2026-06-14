@@ -1,193 +1,363 @@
 # CosmicLens Lab
 
 <p align="center">
-  <strong>A browser-native gravitational-lensing laboratory for strong-lensing physics, visualisation, validation, and shareable scientific demos.</strong>
+  <img alt="CosmicLens Lab banner" src="docs/assets/banner.svg" width="100%">
 </p>
 
 <p align="center">
-  <img alt="CosmicLens Lab concept" src="docs/assets/banner.svg" width="100%">
+  <strong>A browser-native gravitational-lensing laboratory for exploring Einstein rings, caustics, magnification maps, time delays, and strong-lensing model behaviour.</strong>
 </p>
 
-CosmicLens Lab is a research-inspired open-source project for building and exploring gravitational lens systems directly in the browser. It focuses on the thin-lens approximation, canonical strong-lensing mass models, caustics, critical curves, magnification, Fermat potential, time delays, synthetic imaging, and Python validation.
+<p align="center">
+  <a href="https://biswajit1999.github.io/Cosmic-Lens-Lab/">Live Demo</a>
+  ·
+  <a href="docs/physics.md">Physics Notes</a>
+  ·
+  <a href="docs/validation.md">Validation</a>
+  ·
+  <a href="docs/roadmap.md">Roadmap</a>
+</p>
 
-The repo is designed to be serious enough for astronomy students and scientific programmers, but visual enough to work as a flagship GitHub project.
+---
 
-## Why this repo exists
+## Overview
 
-Most mature lensing software is Python-first, notebook-first, or research-pipeline-first. CosmicLens Lab is different:
+**CosmicLens Lab** is an interactive astrophysics project for building and visualising gravitational-lens systems directly in the browser.
 
-- build lens systems interactively in the browser
-- see lensed sources, critical curves, caustics, magnification maps, and time-delay surfaces
-- switch between point-mass, SIS, SIE-like, NFW, Sérsic, composite, and shear models
-- export every scene as versioned JSON
-- revalidate browser equations in Python
-- generate synthetic survey scenes with PSF and noise
-- use the project as a learning lab, outreach tool, or prototyping sandbox
+The aim is to make strong gravitational lensing feel like a live scientific laboratory rather than a static textbook diagram. Users can explore how foreground mass distributions bend light from background sources, forming Einstein rings, arcs, multiple images, caustics, critical curves, magnification structures, and time-delay surfaces.
 
-## Current status
+The project combines:
 
-This is a flagship-ready repository package with a functional cinematic web app, TypeScript physics core, deterministic animation engine, FrameGrid exporter, Python validation package, examples, tests, documentation, and CI/CD templates.
+- a browser-based visual interface,
+- TypeScript lensing physics modules,
+- deterministic animation and FrameGrid rendering,
+- exportable scene configurations,
+- and Python validation tools for reproducibility.
 
-Scientific priority order:
+CosmicLens Lab is designed for astronomy students, educators, scientific programmers, outreach creators, and researchers who want a visual sandbox for lensing concepts.
 
-1. correctness
-2. reproducibility
-3. visual clarity
-4. performance
+---
 
+## Live demo
 
+Once GitHub Pages finishes deployment, the project should be available at:
 
-## 10x upgrade: cinematic animation + FrameGrid rendering
+```text
+https://biswajit1999.github.io/Cosmic-Lens-Lab/
+```
 
-CosmicLens Lab is no longer a static starter demo. The current build includes a deployable cinematic research interface:
+---
 
-- live `requestAnimationFrame` animation loop
-- six deterministic animation modes: source orbit, caustic breathing, shear rotation, subhalo flyby, Einstein-radius pulse, and time-delay sweep
-- six scientific render modes: lensed image, magnification, time delay, parity, source-plane mapping, and residual/anomaly map
-- export current canvas as PNG
-- export full animation timeline as JSON
-- export FrameGrid PNG filmstrips for README banners, papers, LinkedIn posts, and regression snapshots
-- preset gallery: Quad Lab, Einstein Ring, Subhalo Flyby, NFW Cluster Arc Factory, and Fermat Time-Delay Sandbox
-- TypeScript frame renderer in `packages/physics-core/src/frame.ts`
-- deterministic animation engine in `packages/physics-core/src/animation.ts`
-- Python frame-grid diagnostic exporter in `python/cosmiclens_validate/framegrid.py`
+## What you can explore
 
-See [`docs/animation-rendering.md`](docs/animation-rendering.md) for the rendering architecture.
+| Area | What the project shows |
+|---|---|
+| **Strong lensing geometry** | How the lens equation maps image-plane positions to source-plane positions |
+| **Einstein rings and arcs** | How alignment, lens mass, and source position change the observed image |
+| **Caustics and critical curves** | Where image multiplicity and magnification change sharply |
+| **Magnification maps** | Regions where sources are stretched, brightened, or distorted |
+| **Fermat potential and time delays** | How different light paths arrive at different times |
+| **Model comparison** | Behaviour of point-mass, SIS, SIE-like, NFW, Sérsic-inspired, composite, and shear models |
+| **Animated lensing scenes** | Deterministic source orbits, shear rotation, subhalo flybys, Einstein-radius pulses, and time-delay sweeps |
+| **Python validation** | Independent checks of analytic models and exported browser results |
 
-## Features
+---
 
-- Thin-lens equation and analytic model library
-- Point mass, SIS, softened isothermal ellipse approximation, NFW radial helper, external shear
+## Why this project is different
+
+Most mature gravitational-lensing tools are Python-first, notebook-first, or research-pipeline-first. CosmicLens Lab focuses on a different gap:
+
+> **A shareable, browser-native, visually rich gravitational-lensing laboratory with reproducible physics and exportable scenes.**
+
+It is not intended to replace professional lens-modelling packages. Instead, it provides an interactive front door for learning, demonstration, prototyping, visual explanation, and reproducible experimentation.
+
+---
+
+## Core features
+
+### Interactive browser lab
+
+- Real-time canvas-based lensing visualisation
+- Preset scenes for rings, quads, clusters, time delays, and subhalo perturbations
+- Adjustable source and lens parameters
+- Multiple render modes:
+  - lensed image
+  - magnification map
+  - time-delay / Fermat surface
+  - parity map
+  - source-plane mapping
+  - residual / anomaly view
+
+### Physics modules
+
+- Thin-lens equation
+- Point-mass lens
+- Singular Isothermal Sphere
+- SIE-like softened elliptical approximation
+- NFW radial helper
+- Sérsic-inspired profile support
+- External shear
 - Fermat potential and relative time-delay utilities
-- Cinematic Canvas renderer with live animation, render modes, and export tools
-- Scene import/export schema
-- Python validation package with analytic point-mass and SIS checks
-- Example scenes for textbook, galaxy, cluster, and cosmography demos
-- GitHub Actions for CI and GitHub Pages deployment
-- Documentation for physics, architecture, roadmap, validation, and contribution
+
+### Animation and export
+
+- Deterministic animation engine
+- FrameGrid filmstrip rendering
+- Scene export as JSON
+- Timeline export
+- Canvas export as PNG
+- Reproducible preset scenes
+
+### Validation tools
+
+- Python reference package
+- Analytic point-mass checks
+- SIS image-multiplicity checks
+- Cross-language validation design
+- Regression fixtures for future browser/Python comparisons
+
+---
+
+## Scientific scope
+
+CosmicLens Lab currently focuses on **geometric-optics gravitational lensing in the thin-lens approximation**.
+
+The central mapping is:
+
+```math
+\boldsymbol{\beta}
+=
+\boldsymbol{\theta}
+-
+\boldsymbol{\alpha}(\boldsymbol{\theta})
+```
+
+where:
+
+- `θ` is the image-plane angular position,
+- `β` is the source-plane angular position,
+- `α(θ)` is the reduced deflection angle.
+
+The lensing potential satisfies:
+
+```math
+\boldsymbol{\alpha} = \nabla \psi,
+\qquad
+\nabla^2 \psi = 2\kappa
+```
+
+and the magnification is obtained from the Jacobian of the lens mapping:
+
+```math
+\mu = \frac{1}{\det \mathbf{A}}
+```
+
+The Fermat potential used for time-delay visualisation is:
+
+```math
+\phi(\boldsymbol{\theta},\boldsymbol{\beta})
+=
+\frac{1}{2}
+|\boldsymbol{\theta}-\boldsymbol{\beta}|^2
+-
+\psi(\boldsymbol{\theta})
+```
+
+See [`docs/physics.md`](docs/physics.md) for the full physics notes and implementation policy.
+
+---
+
+## Example scenes
+
+| Scene | File | Purpose |
+|---|---|---|
+| Point-mass Einstein ring | `examples/textbook/point-mass-ring.json` | Exact analytic reference case |
+| SIS double image | `examples/textbook/sis-double.json` | Image multiplicity and radial symmetry |
+| SIE-like quad | `examples/galaxy/sie-quad.json` | Quad formation and caustic structure |
+| Galaxy + halo composite | `examples/galaxy/composite-sersic-nfw.json` | Baryon-halo interplay |
+| Subhalo anomaly | `examples/galaxy/subhalo-anomaly.json` | Local perturbation and residual signatures |
+| Time-delay sandbox | `examples/cosmography/time-delay-sandbox.json` | Fermat surface and relative arrival times |
+| Cluster arc factory | `examples/cluster/nfw-cluster-arc.json` | Cluster-scale lensing morphology |
+
+---
+
+## Repository structure
+
+```text
+.
+├── apps/
+│   └── web/                    Browser application
+├── packages/
+│   ├── physics-core/           TypeScript lensing equations and scene logic
+│   ├── schema/                 Versioned JSON scene schema
+│   ├── render-webgl/           WebGL2 capability and fallback helpers
+│   └── render-webgpu/          WebGPU capability layer
+├── python/
+│   └── cosmiclens_validate/    Python validation tools
+├── examples/                   Reproducible scene presets
+├── docs/                       Physics, validation, architecture, roadmap
+├── tests/                      Regression fixtures
+└── .github/                    CI, issue templates, and Pages workflow
+```
+
+---
 
 ## Quick start
 
+Install dependencies:
+
 ```bash
 npm install
+```
+
+Run the web app locally:
+
+```bash
 npm run dev
 ```
 
-Then open the local Vite URL printed in the terminal.
+Build the project:
 
-### Python validation
+```bash
+npm run build
+```
+
+Run TypeScript checks and tests:
+
+```bash
+npm run typecheck
+npm test
+```
+
+Run Python validation:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install -e ./python
-python -m cosmiclens_validate.point_mass
-python -m cosmiclens_validate.sis
+PYTHONPATH=python pytest python/tests -q
 ```
 
-## Repository layout
+On Windows PowerShell:
 
-```text
-apps/web                 Browser app
-packages/physics-core    TypeScript lensing equations and solvers
-packages/schema          Versioned JSON scene schema
-packages/render-webgpu   WebGPU capability and adapter layer
-packages/render-webgl    WebGL2 fallback and texture helper layer
-python/cosmiclens_validate Python reference validation tools
-examples                 Reproducible scene JSON files
-docs                     Scientific and engineering documentation
-tests                    Cross-package regression fixtures
-.github/workflows        CI and Pages deployment workflows
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -e ./python
+$env:PYTHONPATH="python"
+pytest python/tests -q
 ```
 
-## Core equations
-
-The project uses the standard thin-lens mapping
-
-```math
-\boldsymbol{\beta}=\boldsymbol{\theta}-\boldsymbol{\alpha}(\boldsymbol{\theta}),
-```
-
-with lensing potential
-
-```math
-\boldsymbol{\alpha}=\nabla\psi,\qquad \nabla^2\psi=2\kappa,
-```
-
-Jacobian
-
-```math
-\mathbf{A}=\frac{\partial\boldsymbol{\beta}}{\partial\boldsymbol{\theta}},
-```
-
-magnification
-
-```math
-\mu=\frac{1}{\det\mathbf{A}},
-```
-
-and Fermat potential
-
-```math
-\phi(\boldsymbol{\theta},\boldsymbol{\beta})=
-\frac{1}{2}|\boldsymbol{\theta}-\boldsymbol{\beta}|^2-\psi(\boldsymbol{\theta}).
-```
-
-See [`docs/physics.md`](docs/physics.md) for the full derivation and implementation policy.
-
-## MVP demo scenes
-
-| Scene | File | Lesson |
-|---|---|---|
-| Point mass Einstein ring | `examples/textbook/point-mass-ring.json` | Exact analytic validation |
-| SIS double image | `examples/textbook/sis-double.json` | Image multiplicity |
-| SIE-like quad | `examples/galaxy/sie-quad.json` | Caustics and critical curves |
-| Galaxy + halo composite | `examples/galaxy/composite-sersic-nfw.json` | Baryon-halo interplay |
-| Time-delay toy lens | `examples/cosmography/time-delay-sandbox.json` | Fermat surface and H0 sensitivity |
-| Subhalo anomaly | `examples/galaxy/subhalo-anomaly.json` | Local perturbation residuals |
-
-## Development scripts
-
-```bash
-npm run dev          # start web app
-npm run build        # build all packages and web app
-npm run test         # TypeScript unit tests
-npm run lint         # ESLint
-npm run typecheck    # TypeScript type checking
-npm run format       # Prettier check
-```
+---
 
 ## Validation philosophy
 
-Every browser-facing scientific quantity should have either:
+Every scientific quantity shown in the browser should eventually have at least one of the following:
 
-- an analytic reference test,
+- an analytic reference solution,
 - a Python high-precision cross-check,
+- a regression fixture,
 - or a documented numerical tolerance.
 
-The first golden tests are point-mass image positions, SIS image multiplicity, external-shear Jacobian consistency, and Fermat stationary-point checks.
+Initial validation focuses on:
+
+- point-mass image positions,
+- SIS image multiplicity,
+- deflection consistency,
+- Fermat potential behaviour,
+- and browser/Python scene-export parity.
+
+See [`docs/validation.md`](docs/validation.md).
+
+---
 
 ## Roadmap
 
-- **MVP**: canonical lens models, canvas renderer, scene schema, Python validators
-- **v1**: WebGPU kernels, FFT potential solver, synthetic noise/PSF, visual regression
-- **v2**: differentiable inversion, subhalo residual inspector, multi-plane mode
-- **v3**: time-delay cosmography toy MCMC, benchmark gallery, teaching notebooks
+### Current release
+
+- Browser-based lensing scene viewer
+- Core TypeScript physics package
+- Deterministic animation engine
+- FrameGrid rendering
+- Example scene library
+- Python validation package
+- GitHub Pages deployment workflow
+
+### Next milestones
+
+- WebGPU-accelerated field solving
+- FFT-based `κ → ψ → α` solver
+- Improved SIE convention documentation
+- More robust critical-curve and caustic extraction
+- Visual regression tests for canonical scenes
+- Synthetic PSF and noise pipeline
+- Browser-to-Python residual heatmaps
+
+### Longer-term direction
+
+- Multi-plane educational mode
+- Subhalo perturbation laboratory
+- Differentiable inversion demo
+- Time-delay cosmography toy model
+- Teaching notebooks and benchmark gallery
 
 See [`docs/roadmap.md`](docs/roadmap.md).
 
-## GitHub topics
+---
 
-Recommended topics:
+## Use cases
 
-```text
-gravitational-lensing astrophysics cosmology astronomy scientific-visualization webgpu typescript python education dark-matter strong-lensing
-```
+CosmicLens Lab can be used for:
 
-## Citation
+- explaining gravitational lensing in outreach or lectures,
+- generating visual material for astronomy posts,
+- testing intuition about caustics and critical curves,
+- comparing simple lens models,
+- creating reproducible browser-based demos,
+- and building a foundation for more advanced scientific visualisation tools.
 
-If you use this project in teaching, outreach, or research prototyping, cite the repository and the canonical lensing literature in [`docs/references.md`](docs/references.md).
+---
+
+## Project status
+
+This repository is under active development.
+
+The current version is suitable for educational exploration, visual demonstrations, and early scientific prototyping. It should not be treated as a precision cosmology or production lens-modelling pipeline.
+
+---
+
+## Contributing
+
+Contributions are welcome, especially in:
+
+- physics validation,
+- numerical methods,
+- rendering performance,
+- documentation,
+- example scenes,
+- accessibility,
+- and educational notebooks.
+
+Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
+
+---
+
+## References
+
+The project is based on standard gravitational-lensing theory and numerical-lensing literature. Key references and reading notes are listed in:
+
+[`docs/references.md`](docs/references.md)
+
+---
+
+## Author
+
+Created by **Biswajit Jana**.
+
+GitHub: [@Biswajit1999](https://github.com/Biswajit1999)
+
+---
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+This project is released under the MIT License. See [`LICENSE`](LICENSE).
