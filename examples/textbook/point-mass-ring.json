@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "name": "Point mass Einstein ring",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.35,
+      "components": [
+        {
+          "type": "PointMass",
+          "center": [
+            0,
+            0
+          ],
+          "thetaE": 1.0
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 1.5,
+    "profile": {
+      "type": "Gaussian",
+      "center": [
+        0,
+        0
+      ],
+      "radius": 0.08,
+      "flux": 1
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 2.2,
+    "pixels": 260
+  }
+}

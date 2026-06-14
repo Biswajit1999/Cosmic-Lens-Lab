@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "name": "Composite galaxy plus halo",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.32,
+      "components": [
+        {
+          "type": "SoftenedIsothermalEllipse",
+          "center": [
+            0,
+            0
+          ],
+          "thetaE": 0.85,
+          "q": 0.77,
+          "phiDeg": 20,
+          "core": 0.06
+        },
+        {
+          "type": "NFW",
+          "center": [
+            0.05,
+            -0.03
+          ],
+          "kappaS": 0.08,
+          "radiusScale": 1.2
+        },
+        {
+          "type": "ExternalShear",
+          "gamma": 0.025,
+          "phiDeg": 110
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 1.6,
+    "profile": {
+      "type": "SersicLight",
+      "center": [
+        0.08,
+        0.01
+      ],
+      "radius": 0.1,
+      "flux": 1,
+      "n": 1.2,
+      "axisRatio": 0.7,
+      "phiDeg": -20
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 2.4,
+    "pixels": 300
+  }
+}

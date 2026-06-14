@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "name": "Time delay sandbox",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.5,
+      "components": [
+        {
+          "type": "SIS",
+          "center": [
+            0,
+            0
+          ],
+          "thetaE": 1.1
+        },
+        {
+          "type": "ExternalShear",
+          "gamma": 0.06,
+          "phiDeg": 40
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 2.0,
+    "profile": {
+      "type": "Gaussian",
+      "center": [
+        0.18,
+        0.05
+      ],
+      "radius": 0.06,
+      "flux": 1
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 2.6,
+    "pixels": 300
+  }
+}

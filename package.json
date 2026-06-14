@@ -1,0 +1,44 @@
+{
+  "name": "cosmiclens-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser-native gravitational lensing laboratory with TypeScript physics and Python validation.",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace apps/web run dev",
+    "build": "npm --workspace @cosmiclens/physics-core run build && npm --workspace @cosmiclens/schema run build && npm --workspace @cosmiclens/render-webgpu run build && npm --workspace @cosmiclens/render-webgl run build && npm --workspace @cosmiclens/web run build",
+    "test": "vitest run",
+    "typecheck": "tsc -b tsconfig.json",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --check .",
+    "clean": "rimraf apps/web/dist packages/*/dist",
+    "validate:python": "PYTHONPATH=python pytest python/tests -q",
+    "framegrid:diagnostics": "PYTHONPATH=python python -m cosmiclens_validate.framegrid examples/textbook/point-mass-ring.json framegrid-diagnostics.csv --frames 18 --mode einstein-radius-pulse"
+  },
+  "keywords": [
+    "gravitational-lensing",
+    "astrophysics",
+    "cosmology",
+    "webgpu",
+    "typescript",
+    "python",
+    "education"
+  ],
+  "author": "Biswajit Jana",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^9.17.0",
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8"
+  }
+}

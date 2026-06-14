@@ -1,0 +1,54 @@
+{
+  "version": "1.0",
+  "name": "README FrameGrid scene - caustic breathing",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.35,
+      "components": [
+        {
+          "type": "SoftenedIsothermalEllipse",
+          "center": [
+            0,
+            0
+          ],
+          "thetaE": 1.1,
+          "q": 0.68,
+          "phiDeg": 32,
+          "core": 0.04
+        },
+        {
+          "type": "ExternalShear",
+          "gamma": 0.04,
+          "phiDeg": 75
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 1.5,
+    "profile": {
+      "type": "Gaussian",
+      "center": [
+        0.06,
+        0.04
+      ],
+      "radius": 0.08,
+      "flux": 1
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 2.4,
+    "pixels": 300
+  },
+  "animation": {
+    "mode": "caustic-breathing",
+    "durationSec": 10,
+    "frames": 16,
+    "amplitude": 1.0
+  }
+}

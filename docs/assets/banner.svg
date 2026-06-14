@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" role="img" aria-label="CosmicLens Lab banner">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#173b72"/>
+      <stop offset="45%" stop-color="#08162d"/>
+      <stop offset="100%" stop-color="#02040a"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <rect width="1600" height="500" fill="url(#g)"/>
+  <g opacity="0.7">
+    <circle cx="800" cy="250" r="132" fill="none" stroke="#7dd3fc" stroke-width="2"/>
+    <circle cx="800" cy="250" r="188" fill="none" stroke="#a78bfa" stroke-width="1.3" stroke-dasharray="12 12"/>
+    <path d="M214 279 C470 145, 716 132, 994 254 S1390 370, 1504 207" fill="none" stroke="#38bdf8" stroke-width="4" opacity="0.7"/>
+    <path d="M140 332 C456 270, 620 408, 840 244 S1210 105, 1460 280" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.7"/>
+    <ellipse cx="800" cy="250" rx="56" ry="22" fill="#f8fafc" opacity="0.9" transform="rotate(-18 800 250)"/>
+    <ellipse cx="800" cy="250" rx="122" ry="44" fill="none" stroke="#f8fafc" stroke-width="3" opacity="0.8" transform="rotate(-18 800 250)"/>
+  </g>
+  <g filter="url(#blur)" opacity="0.5">
+    <circle cx="640" cy="170" r="12" fill="#38bdf8"/>
+    <circle cx="963" cy="340" r="18" fill="#f59e0b"/>
+    <circle cx="1120" cy="125" r="8" fill="#a78bfa"/>
+  </g>
+  <text x="70" y="100" fill="#e5f4ff" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="800">CosmicLens Lab</text>
+  <text x="72" y="150" fill="#9ccbea" font-family="Inter, system-ui, sans-serif" font-size="24">Browser-native gravitational lensing laboratory</text>
+</svg>

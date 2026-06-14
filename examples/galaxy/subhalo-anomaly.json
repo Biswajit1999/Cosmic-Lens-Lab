@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "name": "Subhalo anomaly toy scene",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.35,
+      "components": [
+        {
+          "type": "SoftenedIsothermalEllipse",
+          "center": [
+            0,
+            0
+          ],
+          "thetaE": 1.1,
+          "q": 0.72,
+          "phiDeg": 35,
+          "core": 0.04
+        },
+        {
+          "type": "SubhaloPointMass",
+          "center": [
+            0.72,
+            0.35
+          ],
+          "thetaE": 0.08
+        },
+        {
+          "type": "ExternalShear",
+          "gamma": 0.035,
+          "phiDeg": 80
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 1.5,
+    "profile": {
+      "type": "Gaussian",
+      "center": [
+        0.07,
+        0.02
+      ],
+      "radius": 0.07,
+      "flux": 1
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 2.4,
+    "pixels": 300
+  }
+}

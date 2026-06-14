@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "name": "SIS double image",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.4,
+      "components": [
+        {
+          "type": "SIS",
+          "center": [
+            0,
+            0
+          ],
+          "thetaE": 1.0
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 1.4,
+    "profile": {
+      "type": "Gaussian",
+      "center": [
+        0.25,
+        0.02
+      ],
+      "radius": 0.07,
+      "flux": 1
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 2.2,
+    "pixels": 260
+  }
+}

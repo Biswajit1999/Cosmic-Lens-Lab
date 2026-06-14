@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "name": "NFW cluster toy lens",
+  "cosmology": {
+    "kind": "flatLCDM",
+    "H0": 70,
+    "Om0": 0.3
+  },
+  "planes": [
+    {
+      "z": 0.25,
+      "components": [
+        {
+          "type": "NFW",
+          "center": [
+            0,
+            0
+          ],
+          "kappaS": 0.22,
+          "radiusScale": 1.5
+        },
+        {
+          "type": "ExternalShear",
+          "gamma": 0.05,
+          "phiDeg": 15
+        }
+      ]
+    }
+  ],
+  "source": {
+    "z": 1.8,
+    "profile": {
+      "type": "Gaussian",
+      "center": [
+        0.25,
+        0.08
+      ],
+      "radius": 0.11,
+      "flux": 1
+    }
+  },
+  "viewport": {
+    "halfWidthArcsec": 4.0,
+    "pixels": 320
+  }
+}
