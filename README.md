@@ -1,7 +1,7 @@
 # CosmicLens Lab
 
 <p align="center">
-  <img alt="CosmicLens Lab banner" src="docs/assets/banner.svg" width="100%">
+  <img alt="CosmicLens Lab banner" src="docs/assets/banner.png" width="100%">
 </p>
 
 <p align="center">
