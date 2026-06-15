@@ -12,3 +12,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .ipynb_checkpoints/
+
+# build verification scratch + incremental tsc cache
+dist_verify/
+*.tsbuildinfo
