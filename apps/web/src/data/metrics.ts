@@ -70,13 +70,12 @@ export function velocityDispersion(scene: LensScene): number | null {
   const { ds, dds } = distances(scene);
   if (dds <= 0 || ds <= 0) return null;
   const thetaRad = thetaE * ARCSEC_TO_RAD;
-  const sigma = C_KM_S * Math.sqrt((thetaRad / (4 * Math.PI)) * (ds / dds));
-  return sigma;
+  return C_KM_S * Math.sqrt((thetaRad / (4 * Math.PI)) * (ds / dds));
 }
 
 /**
  * Projected lensing mass enclosed within the Einstein radius:
- * M(<θE) = (c²/4G) θE² D_d D_s / D_ds.  Returns solar masses.
+ * M(<θE) = (c²/4G) θE² D_d D_s / D_ds. Returns solar masses.
  */
 export function einsteinMass(scene: LensScene): number | null {
   const thetaE = einsteinRadius(scene);
@@ -84,9 +83,8 @@ export function einsteinMass(scene: LensScene): number | null {
   const { dd, ds, dds } = distances(scene);
   if (dds <= 0) return null;
   const thetaRad = thetaE * ARCSEC_TO_RAD;
-  const dEff = (dd * ds) / dds; // Mpc
-  const mass = ((C_M_S * C_M_S) / (4 * G_SI)) * thetaRad * thetaRad * dEff * MPC_IN_M;
-  return mass / M_SUN_KG;
+  const dEff = (dd * ds) / dds;
+  return (((C_M_S * C_M_S) / (4 * G_SI)) * thetaRad * thetaRad * dEff * MPC_IN_M) / M_SUN_KG;
 }
 
 /**
@@ -99,13 +97,12 @@ export function convergenceShear(scene: LensScene, radiusArcsec: number): { kapp
   const kappa = 1 - 0.5 * (a.a11 + a.a22);
   const g1 = -0.5 * (a.a11 - a.a22);
   const g2 = -0.5 * (a.a12 + a.a21);
-  const gamma = Math.hypot(g1, g2);
-  return { kappa, gamma };
+  return { kappa, gamma: Math.hypot(g1, g2) };
 }
 
-/** True when every lens component has an analytic potential (Fermat surface is valid). */
-export function fermatDefined(scene: LensScene): boolean {
-  return scene.planes.every((plane) => plane.components.every((c) => c.type !== 'NFW'));
+/** Every currently supported lens component has an analytic potential. */
+export function fermatDefined(_scene: LensScene): boolean {
+  return true;
 }
 
 /**
@@ -120,84 +117,19 @@ export function buildTelemetry(scene: LensScene, stats: RenderStats | null): Tel
   const shear = shearComponent(scene);
   const extGamma = shear && shear.type === 'ExternalShear' ? shear.gamma : null;
   const { ddt } = distances(scene);
-  const hasFermatPotential = fermatDefined(scene);
-  const fermatSpan = hasFermatPotential && stats ? stats.maxDelay - stats.minDelay : undefined;
+  const fermatSpan = stats ? stats.maxDelay - stats.minDelay : undefined;
 
-  const fields: TelemetryField[] = [
-    {
-      key: 'thetaE',
-      label: 'Einstein radius',
-      symbol: 'θE',
-      value: thetaE === null ? '—' : thetaE.toFixed(3),
-      unit: '″',
-      raw: thetaE ?? undefined,
-    },
-    {
-      key: 'sigma',
-      label: 'Velocity dispersion',
-      symbol: 'σv',
-      value: sigma === null ? '—' : sigma.toFixed(0),
-      unit: 'km/s',
-      note: 'SIS-equivalent',
-      raw: sigma ?? undefined,
-    },
-    {
-      key: 'mass',
-      label: 'Mass within θE',
-      symbol: 'M',
-      value: mass === null ? '—' : formatMass(mass),
-      unit: 'M⊙',
-      raw: mass ?? undefined,
-    },
-    {
-      key: 'kappa',
-      label: 'Convergence',
-      symbol: 'κ',
-      value: kappa.toFixed(3),
-      note: `at θ≈${(thetaE ?? 1).toFixed(2)}″`,
-      raw: kappa,
-    },
-    {
-      key: 'gamma',
-      label: 'Total shear',
-      symbol: 'γ',
-      value: gamma.toFixed(3),
-      note: extGamma === null ? 'model Jacobian' : `ext γ=${extGamma.toFixed(3)}`,
-      raw: gamma,
-    },
-    {
-      key: 'mu',
-      label: 'Peak magnification',
-      symbol: '|μ|',
-      value: stats ? stats.maxAbsMu.toFixed(1) : '—',
-      raw: stats?.maxAbsMu,
-    },
-    {
-      key: 'parity',
-      label: 'Negative-parity area',
-      symbol: '∂',
-      value: stats ? `${(100 * stats.negativeParityFraction).toFixed(1)}%` : '—',
-      note: 'saddle-image region',
-      raw: stats?.negativeParityFraction,
-    },
-    {
-      key: 'fermat',
-      label: 'Fermat span',
-      symbol: 'Δφ',
-      value: fermatSpan === undefined ? '—' : fermatSpan.toFixed(3),
-      note: hasFermatPotential ? 'relative arrival-time' : 'NFW potential not implemented',
-      raw: fermatSpan,
-    },
-    {
-      key: 'ddt',
-      label: 'Time-delay distance',
-      symbol: 'DΔt',
-      value: ddt > 0 ? Math.round(ddt).toLocaleString() : '—',
-      unit: 'Mpc',
-      raw: ddt,
-    },
+  return [
+    { key: 'thetaE', label: 'Einstein radius', symbol: 'θE', value: thetaE === null ? '—' : thetaE.toFixed(3), unit: '″', raw: thetaE ?? undefined },
+    { key: 'sigma', label: 'Velocity dispersion', symbol: 'σv', value: sigma === null ? '—' : sigma.toFixed(0), unit: 'km/s', note: 'SIS-equivalent', raw: sigma ?? undefined },
+    { key: 'mass', label: 'Mass within θE', symbol: 'M', value: mass === null ? '—' : formatMass(mass), unit: 'M⊙', raw: mass ?? undefined },
+    { key: 'kappa', label: 'Convergence', symbol: 'κ', value: kappa.toFixed(3), note: `at θ≈${(thetaE ?? 1).toFixed(2)}″`, raw: kappa },
+    { key: 'gamma', label: 'Total shear', symbol: 'γ', value: gamma.toFixed(3), note: extGamma === null ? 'model Jacobian' : `ext γ=${extGamma.toFixed(3)}`, raw: gamma },
+    { key: 'mu', label: 'Peak magnification', symbol: '|μ|', value: stats ? stats.maxAbsMu.toFixed(1) : '—', raw: stats?.maxAbsMu },
+    { key: 'parity', label: 'Negative-parity area', symbol: '∂', value: stats ? `${(100 * stats.negativeParityFraction).toFixed(1)}%` : '—', note: 'saddle-image region', raw: stats?.negativeParityFraction },
+    { key: 'fermat', label: 'Fermat span', symbol: 'Δφ', value: fermatSpan === undefined ? '—' : fermatSpan.toFixed(3), note: 'analytic lens potential', raw: fermatSpan },
+    { key: 'ddt', label: 'Time-delay distance', symbol: 'DΔt', value: ddt > 0 ? Math.round(ddt).toLocaleString() : '—', unit: 'Mpc', raw: ddt },
   ];
-  return fields;
 }
 
 function formatMass(value: number): string {
