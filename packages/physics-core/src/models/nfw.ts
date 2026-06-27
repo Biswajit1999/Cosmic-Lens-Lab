@@ -2,17 +2,19 @@ import { EPS } from '../constants';
 import type { Vec2 } from '../types';
 import { norm, sub } from '../vector';
 
+const SMALL_X = 0.1;
+
 /**
  * Circular NFW helper g(x) used by the reduced deflection
  * alpha(x) = 4 kappa_s theta_s g(x) / x.
  *
- * The small-x branch avoids cancellation between log(x/2) and atanh terms.
+ * At small x, direct evaluation subtracts nearly equal logarithmic terms. The
+ * series branch is carried through x^6 and is continuous with the analytic form
+ * to better than 1e-6 relative near the switch.
  */
 export function nfwG(xRaw: number): number {
   const x = Math.max(xRaw, EPS);
-  if (x < 1e-4) {
-    return 0.5 * x * x * (Math.log(2 / x) - 0.5);
-  }
+  if (x < SMALL_X) return nfwSmallG(x);
   if (Math.abs(x - 1) < 1e-5) return Math.log(0.5) + 1;
   if (x < 1) {
     const a = Math.sqrt((1 - x) / (1 + x));
@@ -29,9 +31,7 @@ export function nfwG(xRaw: number): number {
  */
 export function nfwPotentialShape(xRaw: number): number {
   const x = Math.max(xRaw, EPS);
-  if (x < 1e-4) {
-    return 0.5 * x * x * Math.log(2 / x);
-  }
+  if (x < SMALL_X) return nfwSmallPotentialShape(x);
   if (Math.abs(x - 1) < 1e-5) return Math.log(0.5) ** 2;
   if (x < 1) {
     const q = Math.sqrt(1 - x * x);
@@ -39,6 +39,34 @@ export function nfwPotentialShape(xRaw: number): number {
   }
   const q = Math.sqrt(x * x - 1);
   return Math.log(x / 2) ** 2 + Math.atan(q) ** 2;
+}
+
+/**
+ * Small-x expansion of g(x). It is derived from the same potential expansion
+ * below, so the numerical identity dh/dx = 2g/x is maintained at the switch.
+ */
+function nfwSmallG(x: number): number {
+  const logTerm = Math.log(2 / x);
+  const x2 = x * x;
+  const x4 = x2 * x2;
+  const x6 = x4 * x2;
+  return x2 * (0.5 * logTerm - 0.25)
+    + x4 * ((3 * logTerm) / 8 - 7 / 32)
+    + x6 * ((5 * logTerm) / 16 - 37 / 192);
+}
+
+/**
+ * Small-x expansion of h(x) through x^6. The direct expression
+ * log(x/2)^2 - atanh(sqrt(1-x^2))^2 loses precision near the origin.
+ */
+function nfwSmallPotentialShape(x: number): number {
+  const logTerm = Math.log(2 / x);
+  const x2 = x * x;
+  const x4 = x2 * x2;
+  const x6 = x4 * x2;
+  return x2 * (0.5 * logTerm)
+    + x4 * ((3 * logTerm) / 16 - 1 / 16)
+    + x6 * ((5 * logTerm) / 48 - 3 / 64);
 }
 
 export function nfwDeflection(theta: Vec2, center: Vec2, kappaS: number, radiusScale: number): Vec2 {
