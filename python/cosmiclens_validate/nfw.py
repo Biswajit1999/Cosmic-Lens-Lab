@@ -35,7 +35,7 @@ def nfw_g(x_raw: float) -> float:
     x = max(x_raw, EPS)
     if x < SMALL_X:
         return _small_g(x)
-    if abs(x - 1.0) < 1e-5:
+    if x == 1.0:
         return math.log(0.5) + 1.0
     if x < 1.0:
         a = math.sqrt((1.0 - x) / (1.0 + x))
@@ -48,7 +48,7 @@ def nfw_potential_shape(x_raw: float) -> float:
     x = max(x_raw, EPS)
     if x < SMALL_X:
         return _small_potential_shape(x)
-    if abs(x - 1.0) < 1e-5:
+    if x == 1.0:
         return math.log(0.5) ** 2
     if x < 1.0:
         return math.log(x / 2.0) ** 2 - math.atanh(math.sqrt(1.0 - x * x)) ** 2
