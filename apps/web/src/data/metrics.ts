@@ -120,6 +120,8 @@ export function buildTelemetry(scene: LensScene, stats: RenderStats | null): Tel
   const shear = shearComponent(scene);
   const extGamma = shear && shear.type === 'ExternalShear' ? shear.gamma : null;
   const { ddt } = distances(scene);
+  const hasFermatPotential = fermatDefined(scene);
+  const fermatSpan = hasFermatPotential && stats ? stats.maxDelay - stats.minDelay : undefined;
 
   const fields: TelemetryField[] = [
     {
@@ -182,9 +184,9 @@ export function buildTelemetry(scene: LensScene, stats: RenderStats | null): Tel
       key: 'fermat',
       label: 'Fermat span',
       symbol: 'Δφ',
-      value: stats ? (stats.maxDelay - stats.minDelay).toFixed(3) : '—',
-      note: 'relative arrival-time',
-      raw: stats ? stats.maxDelay - stats.minDelay : undefined,
+      value: fermatSpan === undefined ? '—' : fermatSpan.toFixed(3),
+      note: hasFermatPotential ? 'relative arrival-time' : 'NFW potential not implemented',
+      raw: fermatSpan,
     },
     {
       key: 'ddt',
@@ -195,7 +197,6 @@ export function buildTelemetry(scene: LensScene, stats: RenderStats | null): Tel
       raw: ddt,
     },
   ];
-
   return fields;
 }
 
