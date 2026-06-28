@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { buildPresetCards, STATUS_LABEL } from '../data/presets';
 import { Overlay } from './Overlay';
 
@@ -12,7 +11,6 @@ interface PresetGalleryProps {
 
 export function PresetGallery({ open, activeName, onClose, onSelect }: PresetGalleryProps) {
   const cards = useMemo(() => buildPresetCards(), []);
-  const reduceMotion = useReducedMotion();
 
   return (
     <Overlay open={open} title="Preset lensing theatres" eyebrow="Curated experiments" onClose={onClose}>
@@ -24,7 +22,7 @@ export function PresetGallery({ open, activeName, onClose, onSelect }: PresetGal
         {cards.map(({ preset, family, config, status, caveat }, index) => {
           const active = preset.scene.name === activeName;
           return (
-            <motion.button
+            <button
               key={preset.id}
               type="button"
               className={`preset-card${active ? ' active' : ''}`}
@@ -32,9 +30,6 @@ export function PresetGallery({ open, activeName, onClose, onSelect }: PresetGal
                 onSelect(preset.id);
                 onClose();
               }}
-              whileHover={reduceMotion ? undefined : { y: -3, scale: 1.012 }}
-              whileTap={reduceMotion ? undefined : { scale: 0.988 }}
-              transition={{ type: 'spring', stiffness: 420, damping: 28 }}
             >
               <div className="preset-card__top">
                 <span className="preset-index">{String(index + 1).padStart(2, '0')}</span>
@@ -47,7 +42,7 @@ export function PresetGallery({ open, activeName, onClose, onSelect }: PresetGal
               <p className="preset-card__desc">{preset.description}</p>
               <div className="preset-card__foot mono">{config}</div>
               {caveat && <div className="preset-card__caveat">{caveat}</div>}
-            </motion.button>
+            </button>
           );
         })}
       </div>
