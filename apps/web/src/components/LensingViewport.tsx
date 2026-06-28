@@ -25,7 +25,6 @@ interface LensingViewportProps {
   pixels: number;
   showVectors: boolean;
   showOverlays: boolean;
-  fermatValid: boolean;
   onRenderMode: (mode: RenderMode) => void;
   onTogglePlay: () => void;
   onToggleOverlays: () => void;
@@ -42,7 +41,6 @@ export function LensingViewport({
   pixels,
   showVectors,
   showOverlays,
-  fermatValid,
   onRenderMode,
   onTogglePlay,
   onToggleOverlays,
@@ -68,8 +66,6 @@ export function LensingViewport({
     const canvas = canvasRef.current;
     if (canvas) downloadCanvas(canvas, `${slug(scene.name)}-${renderMode}.png`);
   }
-
-  const fermatActive = renderMode === 'time-delay';
 
   return (
     <section className="viewport" aria-label="Gravitational lensing viewport">
@@ -108,12 +104,6 @@ export function LensingViewport({
 
       <div className="viewport__stage">
         <canvas ref={canvasRef} className="viewport__canvas" aria-label="Cinematic lensing render" />
-        {fermatActive && !fermatValid && (
-          <div className="viewport__notice" role="status">
-            Fermat surface is undefined for NFW components in this scene. Showing geometric term only — full NFW
-            potential is on the roadmap.
-          </div>
-        )}
         <div className="viewport__legend" aria-hidden="true">
           <span><i className="legend-line amber" /> Critical curve (image plane)</span>
           <span><i className="legend-line cyan" /> Caustic (source plane)</span>

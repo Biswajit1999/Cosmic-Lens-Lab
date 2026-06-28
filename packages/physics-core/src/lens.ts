@@ -5,6 +5,7 @@ import {
   externalShearDeflection,
   externalShearPotential,
   nfwDeflection,
+  nfwPotential,
   pointMassDeflection,
   pointMassPotential,
   sisDeflection,
@@ -44,10 +45,8 @@ export function componentPotential(theta: Vec2, component: LensComponent): numbe
       return softenedIsothermalEllipsePotential(theta, component.center, component.thetaE, component.q, component.phiDeg, component.core);
     case 'ExternalShear':
       return externalShearPotential(theta, component.gamma, component.phiDeg);
-    case 'NFW': {
-      // Potential omitted in MVP; keep Fermat map valid for non-NFW demos.
-      return 0;
-    }
+    case 'NFW':
+      return nfwPotential(theta, component.center, component.kappaS, component.radiusScale);
   }
 }
 

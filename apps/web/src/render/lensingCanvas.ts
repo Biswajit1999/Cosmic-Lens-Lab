@@ -3,11 +3,11 @@
  *
  * The scientific image data (surface brightness, magnification, parity, Fermat,
  * residual) all come from `renderLensFrame` in the physics core. This module is
- * responsible only for presentation: deep-space backdrop, distortion mesh,
- * foreground lens glow, critical-curve / caustic overlays and HUD furniture.
+ * responsible only for presentation: deep-space backdrop, the rendered lensing
+ * field, critical-curve / caustic overlays, and UI furniture.
  */
 import type { LensScene, RenderFrame, RenderMode, RenderStats, Vec2 } from '@cosmiclens/physics-core';
-import { renderLensFrame } from '@cosmiclens/physics-core';
+import { lensEquation, renderLensFrame } from '@cosmiclens/physics-core';
 import { drawCosmicDust, drawDeepSpace, drawStarfield } from './starfield';
 import { drawCornerBrackets, drawScaleBar, drawScanlines, drawSourceMarker, drawViewportHud } from './hudOverlays';
 
@@ -44,42 +44,6 @@ function blitFrame(ctx: CanvasRenderingContext2D, frame: RenderFrame, width: num
   ctx.globalAlpha = alpha;
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(raw, x, y, size, size);
-  ctx.restore();
-}
-
-function drawDistortionGrid(ctx: CanvasRenderingContext2D, width: number, height: number, phase: number, drift: number): void {
-  ctx.save();
-  ctx.lineWidth = 1;
-  ctx.globalAlpha = 0.4;
-  const gap = Math.max(42, Math.min(width, height) / 13);
-  const cx = width * 0.5;
-  const cy = height * 0.48;
-  const wob = drift === 0 ? 0 : 1;
-
-  ctx.strokeStyle = 'rgba(85, 205, 255, 0.12)';
-  for (let gx = -gap; gx < width + gap; gx += gap) {
-    ctx.beginPath();
-    for (let t = 0; t <= 1; t += 0.025) {
-      const y = t * height;
-      const pull = (38 * Math.sin(t * Math.PI)) / (1 + Math.abs(gx - cx) / 120);
-      const x = gx + pull * Math.sin(phase * Math.PI * 2 * wob + y * 0.007);
-      if (t === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }
-  ctx.strokeStyle = 'rgba(255, 181, 71, 0.1)';
-  for (let gy = -gap; gy < height + gap; gy += gap) {
-    ctx.beginPath();
-    for (let t = 0; t <= 1; t += 0.025) {
-      const x = t * width;
-      const pull = (38 * Math.sin(t * Math.PI)) / (1 + Math.abs(gy - cy) / 120);
-      const y = gy + pull * Math.cos(phase * Math.PI * 2 * wob + x * 0.007);
-      if (t === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  }
   ctx.restore();
 }
 
@@ -121,6 +85,66 @@ function drawOverlayPoints(
   ctx.restore();
 }
 
+/**
+ * Draw the actual thin-lens mapping from image-plane samples theta to their
+ * source-plane coordinates beta(theta). Length is capped only to keep arrows
+ * inside the viewport; direction and sampling use the same physics core as the
+ * lens image, rather than a procedural distortion animation.
+ */
+function drawRayShootingVectors(
+  ctx: CanvasRenderingContext2D,
+  scene: LensScene,
+  width: number,
+  height: number,
+  halfWidth: number,
+  dpr: number,
+): void {
+  const cells = 8;
+  const maximumPx = Math.min(width, height) * 0.14;
+  ctx.save();
+  ctx.globalAlpha = 0.7;
+  ctx.strokeStyle = 'rgba(148, 245, 225, 0.82)';
+  ctx.fillStyle = 'rgba(148, 245, 225, 0.82)';
+  ctx.lineWidth = 0.9 * dpr;
+
+  for (let j = 1; j < cells; j++) {
+    for (let i = 1; i < cells; i++) {
+      const theta: Vec2 = [
+        -halfWidth + (2 * halfWidth * i) / cells,
+        -halfWidth + (2 * halfWidth * j) / cells,
+      ];
+      const beta = lensEquation(theta, scene.planes);
+      const [x0, y0] = worldToCanvas(theta, width, height, halfWidth);
+      const [xBeta, yBeta] = worldToCanvas(beta, width, height, halfWidth);
+      const dx = xBeta - x0;
+      const dy = yBeta - y0;
+      const length = Math.hypot(dx, dy);
+      if (!Number.isFinite(length) || length < 1.5) continue;
+      const scale = Math.min(1, maximumPx / length);
+      const x1 = x0 + dx * scale;
+      const y1 = y0 + dy * scale;
+      ctx.beginPath();
+      ctx.moveTo(x0, y0);
+      ctx.lineTo(x1, y1);
+      ctx.stroke();
+
+      const angle = Math.atan2(y1 - y0, x1 - x0);
+      const head = 3.5 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x1 - head * Math.cos(angle - Math.PI / 6), y1 - head * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x1 - head * Math.cos(angle + Math.PI / 6), y1 - head * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+
+  ctx.globalAlpha = 0.9;
+  ctx.font = `${10 * dpr}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+  ctx.fillText('ray shooting: θ → β(θ)', 18 * dpr, height - 22 * dpr);
+  ctx.restore();
+}
+
 export interface ViewportOptions {
   renderMode: RenderMode;
   pixels: number;
@@ -155,7 +179,6 @@ export function renderViewport(canvas: HTMLCanvasElement, scene: LensScene, opts
   drawDeepSpace(ctx, width, height);
   drawStarfield(ctx, width, height, opts.phase, opts.drift);
   drawCosmicDust(ctx, width, height);
-  drawDistortionGrid(ctx, width, height, opts.phase, opts.drift);
   blitFrame(ctx, frame, width, height, 0.86);
   drawLensGlow(ctx, width, height, opts.phase, opts.drift);
 
@@ -165,26 +188,7 @@ export function renderViewport(canvas: HTMLCanvasElement, scene: LensScene, opts
   }
 
   drawSourceMarker(ctx, scene.source.profile.center, width, height, halfWidth, dpr);
-
-  if (opts.showVectors) {
-    ctx.save();
-    ctx.globalAlpha = 0.46;
-    ctx.strokeStyle = 'rgba(148, 245, 225, 0.7)';
-    ctx.lineWidth = 1;
-    const beta = scene.source.profile.center;
-    for (let j = 1; j < 9; j++) {
-      for (let i = 1; i < 9; i++) {
-        const x = -halfWidth + (2 * halfWidth * i) / 9;
-        const y = -halfWidth + (2 * halfWidth * j) / 9;
-        const [cx, cy] = worldToCanvas([x, y], width, height, halfWidth);
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + (beta[0] - x) * 18, cy - (beta[1] - y) * 18);
-        ctx.stroke();
-      }
-    }
-    ctx.restore();
-  }
+  if (opts.showVectors) drawRayShootingVectors(ctx, scene, width, height, halfWidth, dpr);
 
   drawScanlines(ctx, width, height, opts.phase);
   drawCornerBrackets(ctx, width, height, dpr);
