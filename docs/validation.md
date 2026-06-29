@@ -2,6 +2,16 @@
 
 CosmicLens Lab uses layered validation.
 
+## Tier 0: independent analytic contract
+
+Before interface, animation, WebGL, or WebGPU upgrades are treated as scientifically trustworthy, the independent contract in [`docs/validation_contract.md`](validation_contract.md) should pass:
+
+```bash
+python tools/validate_lensing_contract.py
+```
+
+This script avoids project imports and checks convention-sensitive invariants for point-mass lensing, SIS image multiplicity, external shear, and Fermat stationary points.
+
 ## Tier 1: analytic tests
 
 - Point-mass image positions
