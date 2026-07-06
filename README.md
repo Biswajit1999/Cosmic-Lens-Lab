@@ -15,6 +15,8 @@
   ·
   <a href="docs/validation.md">Validation</a>
   ·
+  <a href="docs/science-audit-2026-07-06.md">Science Audit</a>
+  ·
   <a href="docs/roadmap.md">Roadmap</a>
 </p>
 
@@ -35,6 +37,14 @@ The project combines:
 - and Python validation tools for reproducibility.
 
 CosmicLens Lab is designed for astronomy students, educators, scientific programmers, outreach creators, and researchers who want a visual sandbox for lensing concepts.
+
+---
+
+## Scientific guardrail
+
+CosmicLens Lab is currently scoped as a **single-plane, geometric-optics, thin-lens** visual and validation lab. Browser visuals are not allowed to imply physical quantities that are not encoded by the model. Critical curves, caustics, magnification maps, and animations must remain traceable to declared equations or scene parameters.
+
+The latest science-audit pass adds analytic invariant tests for the point-mass and SIS Python reference models before any further visual upgrades.
 
 ---
 
@@ -163,7 +173,7 @@ The Fermat potential used for time-delay visualisation is:
 \psi(\boldsymbol{\theta})
 ```
 
-See [`docs/physics.md`](docs/physics.md) for the full physics notes and implementation policy.
+See [`docs/physics.md`](docs/physics.md) and the current [`science audit`](docs/science-audit-2026-07-06.md) for the implementation policy.
 
 ---
 
@@ -199,165 +209,3 @@ See [`docs/physics.md`](docs/physics.md) for the full physics notes and implemen
 ├── tests/                      Regression fixtures
 └── .github/                    CI, issue templates, and Pages workflow
 ```
-
----
-
-## Quick start
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the web app locally:
-
-```bash
-npm run dev
-```
-
-Build the project:
-
-```bash
-npm run build
-```
-
-Run TypeScript checks and tests:
-
-```bash
-npm run typecheck
-npm test
-```
-
-Run Python validation:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -e ./python
-PYTHONPATH=python pytest python/tests -q
-```
-
-On Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -e ./python
-$env:PYTHONPATH="python"
-pytest python/tests -q
-```
-
----
-
-## Validation philosophy
-
-Every scientific quantity shown in the browser should eventually have at least one of the following:
-
-- an analytic reference solution,
-- a Python high-precision cross-check,
-- a regression fixture,
-- or a documented numerical tolerance.
-
-Initial validation focuses on:
-
-- point-mass image positions,
-- SIS image multiplicity,
-- deflection consistency,
-- Fermat potential behaviour,
-- and browser/Python scene-export parity.
-
-See [`docs/validation.md`](docs/validation.md).
-
----
-
-## Roadmap
-
-### Current release
-
-- Browser-based lensing scene viewer
-- Core TypeScript physics package
-- Deterministic animation engine
-- FrameGrid rendering
-- Example scene library
-- Python validation package
-- GitHub Pages deployment workflow
-
-### Next milestones
-
-- WebGPU-accelerated field solving
-- FFT-based `κ → ψ → α` solver
-- Improved SIE convention documentation
-- More robust critical-curve and caustic extraction
-- Visual regression tests for canonical scenes
-- Synthetic PSF and noise pipeline
-- Browser-to-Python residual heatmaps
-
-### Longer-term direction
-
-- Multi-plane educational mode
-- Subhalo perturbation laboratory
-- Differentiable inversion demo
-- Time-delay cosmography toy model
-- Teaching notebooks and benchmark gallery
-
-See [`docs/roadmap.md`](docs/roadmap.md).
-
----
-
-## Use cases
-
-CosmicLens Lab can be used for:
-
-- explaining gravitational lensing in outreach or lectures,
-- generating visual material for astronomy posts,
-- testing intuition about caustics and critical curves,
-- comparing simple lens models,
-- creating reproducible browser-based demos,
-- and building a foundation for more advanced scientific visualisation tools.
-
----
-
-## Project status
-
-This repository is under active development.
-
-The current version is suitable for educational exploration, visual demonstrations, and early scientific prototyping. It should not be treated as a precision cosmology or production lens-modelling pipeline.
-
----
-
-## Contributing
-
-Contributions are welcome, especially in:
-
-- physics validation,
-- numerical methods,
-- rendering performance,
-- documentation,
-- example scenes,
-- accessibility,
-- and educational notebooks.
-
-Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
-
----
-
-## References
-
-The project is based on standard gravitational-lensing theory and numerical-lensing literature. Key references and reading notes are listed in:
-
-[`docs/references.md`](docs/references.md)
-
----
-
-## Author
-
-Created by **Biswajit Jana**.
-
-GitHub: [@Biswajit1999](https://github.com/Biswajit1999)
-
----
-
-## License
-
-This project is released under the MIT License. See [`LICENSE`](LICENSE).
