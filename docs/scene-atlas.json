@@ -1,0 +1,254 @@
+{
+  "format": "cosmiclens-scene-atlas/v1",
+  "status": "passed",
+  "integrity_fingerprint": "cc3129ccedcdf8b16d03fff93e8006670a2547ec5df5f767ee869ba26dc111ca",
+  "summary": {
+    "scene_count": 9,
+    "categories": [
+      "animation",
+      "cluster",
+      "cosmography",
+      "galaxy",
+      "textbook"
+    ],
+    "component_counts": {
+      "SoftenedIsothermalEllipse": 5,
+      "ExternalShear": 7,
+      "SubhaloPointMass": 2,
+      "NFW": 2,
+      "SIS": 2,
+      "PointMass": 1
+    }
+  },
+  "scenes": [
+    {
+      "path": "examples/animation/readme-framegrid-caustic-breathing.json",
+      "name": "README FrameGrid scene - caustic breathing",
+      "passed": true,
+      "failures": [],
+      "sha256": "4c99d4269be71f1d7176e09d4bb214939f8edc3012c05f0b19345eef8d6c8533",
+      "category": "animation",
+      "source_redshift": 1.5,
+      "max_lens_redshift": 0.35,
+      "viewport_pixels": 300,
+      "viewport_half_width_arcsec": 2.4,
+      "component_count": 2,
+      "component_counts": {
+        "SoftenedIsothermalEllipse": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/animation/readme-framegrid-subhalo-flyby.json",
+      "name": "README FrameGrid scene - subhalo flyby",
+      "passed": true,
+      "failures": [],
+      "sha256": "96b70ed7ee566a6534e1d7e411cac64dd375ae54870f9f7f1ea4ba892d69cd4a",
+      "category": "animation",
+      "source_redshift": 1.5,
+      "max_lens_redshift": 0.35,
+      "viewport_pixels": 300,
+      "viewport_half_width_arcsec": 2.4,
+      "component_count": 3,
+      "component_counts": {
+        "SoftenedIsothermalEllipse": 1,
+        "SubhaloPointMass": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/cluster/nfw-cluster.json",
+      "name": "NFW cluster toy lens",
+      "passed": true,
+      "failures": [],
+      "sha256": "e7692d238a2b376286e6d3801ab27fd5eb4a8e4fafb38f65e24a639bc8b2f3a8",
+      "category": "cluster",
+      "source_redshift": 1.8,
+      "max_lens_redshift": 0.25,
+      "viewport_pixels": 320,
+      "viewport_half_width_arcsec": 4,
+      "component_count": 2,
+      "component_counts": {
+        "NFW": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/cosmography/time-delay-sandbox.json",
+      "name": "Time delay sandbox",
+      "passed": true,
+      "failures": [],
+      "sha256": "4ebec4ac5b311a4beb3a520be3fd18c6420ce7686c24355fa58fc162dcdcf7d3",
+      "category": "cosmography",
+      "source_redshift": 2,
+      "max_lens_redshift": 0.5,
+      "viewport_pixels": 300,
+      "viewport_half_width_arcsec": 2.6,
+      "component_count": 2,
+      "component_counts": {
+        "SIS": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/galaxy/composite-sersic-nfw.json",
+      "name": "Composite galaxy plus halo",
+      "passed": true,
+      "failures": [],
+      "sha256": "f30bb7f487e7e3d39256e5b3a7c58c504650719c202dff5b0a3cd1f7c57d0ac3",
+      "category": "galaxy",
+      "source_redshift": 1.6,
+      "max_lens_redshift": 0.32,
+      "viewport_pixels": 300,
+      "viewport_half_width_arcsec": 2.4,
+      "component_count": 3,
+      "component_counts": {
+        "SoftenedIsothermalEllipse": 1,
+        "NFW": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/galaxy/sie-quad.json",
+      "name": "SIE-like quad",
+      "passed": true,
+      "failures": [],
+      "sha256": "d41262ae8ce7dc005f8038cc262ef5e927a124371d935b0429493792ecfe4cd6",
+      "category": "galaxy",
+      "source_redshift": 1.5,
+      "max_lens_redshift": 0.35,
+      "viewport_pixels": 300,
+      "viewport_half_width_arcsec": 2.4,
+      "component_count": 2,
+      "component_counts": {
+        "SoftenedIsothermalEllipse": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/galaxy/subhalo-anomaly.json",
+      "name": "Subhalo anomaly toy scene",
+      "passed": true,
+      "failures": [],
+      "sha256": "9d73c5ffccbb04a712450dec5c12a5a4d01610ca43474597beac90b7292faea9",
+      "category": "galaxy",
+      "source_redshift": 1.5,
+      "max_lens_redshift": 0.35,
+      "viewport_pixels": 300,
+      "viewport_half_width_arcsec": 2.4,
+      "component_count": 3,
+      "component_counts": {
+        "SoftenedIsothermalEllipse": 1,
+        "SubhaloPointMass": 1,
+        "ExternalShear": 1
+      },
+      "analytic_reference": null
+    },
+    {
+      "path": "examples/textbook/point-mass-ring.json",
+      "name": "Point mass Einstein ring",
+      "passed": true,
+      "failures": [],
+      "sha256": "dd62352c2610b4a5dd8d92da6d59852f14290b1e01256c45a8e693f9ad92b298",
+      "category": "textbook",
+      "source_redshift": 1.5,
+      "max_lens_redshift": 0.35,
+      "viewport_pixels": 260,
+      "viewport_half_width_arcsec": 2.2,
+      "component_count": 1,
+      "component_counts": {
+        "PointMass": 1
+      },
+      "analytic_reference": {
+        "kind": "point-mass Einstein ring",
+        "thetaE_arcsec": 1
+      }
+    },
+    {
+      "path": "examples/textbook/sis-double.json",
+      "name": "SIS double image",
+      "passed": true,
+      "failures": [],
+      "sha256": "6a45c1b98912265128751fab4a91d9d6d9ab9c01e2f93ae8ee0a7c6c7b644728",
+      "category": "textbook",
+      "source_redshift": 1.4,
+      "max_lens_redshift": 0.4,
+      "viewport_pixels": 260,
+      "viewport_half_width_arcsec": 2.2,
+      "component_count": 1,
+      "component_counts": {
+        "SIS": 1
+      },
+      "analytic_reference": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "scene files exist",
+      "passed": true,
+      "detail": "9 scenes"
+    },
+    {
+      "name": "all scenes pass JSON physics contract",
+      "passed": true,
+      "detail": "all scenes pass"
+    },
+    {
+      "name": "component coverage PointMass",
+      "passed": true,
+      "detail": "1"
+    },
+    {
+      "name": "component coverage SIS",
+      "passed": true,
+      "detail": "2"
+    },
+    {
+      "name": "component coverage SoftenedIsothermalEllipse",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "name": "component coverage ExternalShear",
+      "passed": true,
+      "detail": "7"
+    },
+    {
+      "name": "component coverage NFW",
+      "passed": true,
+      "detail": "2"
+    },
+    {
+      "name": "analytic point-mass ring anchor",
+      "passed": true,
+      "detail": "point-mass centered source benchmark"
+    },
+    {
+      "name": "Python point-mass validation exists",
+      "passed": true,
+      "detail": "python/tests/test_point_mass.py"
+    },
+    {
+      "name": "Python SIS validation exists",
+      "passed": true,
+      "detail": "python/tests/test_sis.py"
+    },
+    {
+      "name": "TypeScript point-mass validation exists",
+      "passed": true,
+      "detail": "packages/physics-core/src/__tests__/pointMass.test.ts"
+    },
+    {
+      "name": "TypeScript SIS validation exists",
+      "passed": true,
+      "detail": "packages/physics-core/src/__tests__/sis.test.ts"
+    }
+  ],
+  "warnings": []
+}

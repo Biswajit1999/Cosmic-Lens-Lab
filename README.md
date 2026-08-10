@@ -15,6 +15,8 @@
   ·
   <a href="docs/validation.md">Validation</a>
   ·
+  <a href="SCENE_ATLAS.md">Scene Atlas</a>
+  ·
   <a href="docs/roadmap.md">Roadmap</a>
 </p>
 
@@ -115,6 +117,17 @@ It is not intended to replace professional lens-modelling packages. Instead, it 
 - SIS image-multiplicity checks
 - Cross-language validation design
 - Regression fixtures for future browser/Python comparisons
+- Machine-generated scene atlas for every committed preset
+
+### Scene atlas
+
+Every preset under `examples/` is validated by:
+
+```bash
+npm run audit:scenes
+```
+
+The audit checks JSON shape, flat-LCDM metadata, source/lens redshift ordering, component parameter bounds, viewport limits, analytic point-mass-ring coverage, and matching TypeScript/Python validation fixtures. It writes [`SCENE_ATLAS.md`](SCENE_ATLAS.md) and [`docs/scene-atlas.json`](docs/scene-atlas.json).
 
 ---
 
@@ -227,6 +240,7 @@ Run TypeScript checks and tests:
 ```bash
 npm run typecheck
 npm test
+npm run audit:scenes
 ```
 
 Run Python validation:
