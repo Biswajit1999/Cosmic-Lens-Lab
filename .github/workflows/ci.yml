@@ -53,3 +53,6 @@ jobs:
 
       - name: Run Python tests
         run: pytest python/tests -q
+
+      - name: Run analytic lensing contract
+        run: python tools/validate_lensing_contract.py
