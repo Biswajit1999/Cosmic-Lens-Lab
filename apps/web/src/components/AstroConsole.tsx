@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { AnimationMode, LensScene, RenderMode, RenderStats } from '@cosmiclens/physics-core';
 import { evolveScene } from '@cosmiclens/physics-core';
 import { makeDefaultScene, makeScenePresets } from '@cosmiclens/schema';
-import { buildTelemetry, fermatDefined } from '../data/metrics';
+import { buildTelemetry } from '../data/metrics';
 import { cloneScene, setComponentParam, type ParamKey } from '../data/scene';
 import { renderExportGrid } from '../render/frameGrid';
 import { downloadCanvas } from '../utils/download';
@@ -50,7 +50,6 @@ export function AstroConsole() {
 
   const telemetry = useMemo(() => buildTelemetry(animatedScene, stats), [animatedScene, stats]);
 
-  // Append raw telemetry values into rolling history for the sparklines.
   useEffect(() => {
     setHistory((prev) => {
       const next: Record<string, number[]> = { ...prev };
@@ -132,7 +131,6 @@ export function AstroConsole() {
           pixels={pixels}
           showVectors={showVectors}
           showOverlays={showOverlays}
-          fermatValid={fermatDefined(animatedScene)}
           onRenderMode={setRenderMode}
           onTogglePlay={() => setPlaying((p) => !p)}
           onToggleOverlays={() => setShowOverlays((v) => !v)}

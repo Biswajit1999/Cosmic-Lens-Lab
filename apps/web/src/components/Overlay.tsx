@@ -9,7 +9,6 @@ interface OverlayProps {
   children: ReactNode;
 }
 
-/** Accessible modal / drawer shell with backdrop and Escape-to-close. */
 export function Overlay({ open, title, eyebrow, side = 'center', onClose, children }: OverlayProps) {
   useEffect(() => {
     if (!open) return;
@@ -32,7 +31,7 @@ export function Overlay({ open, title, eyebrow, side = 'center', onClose, childr
             <h2 className="panel__title">{title}</h2>
           </div>
           <button type="button" className="overlay__close" onClick={onClose} aria-label="Close panel">
-            ✕
+            X
           </button>
         </header>
         <div className="overlay__body">{children}</div>
