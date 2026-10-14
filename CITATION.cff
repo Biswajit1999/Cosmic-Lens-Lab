@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this research software, please cite it using this metadata."
+title: "CosmicLens Lab — Strong-Lensing Command Deck"
+abstract: "CosmicLens Lab is a browser-native gravitational-lensing console for Einstein rings, caustics, critical curves, magnification maps, Fermat potential, time delays, and strong-lensing model behaviour."
+type: software
+authors:
+  - family-names: Jana
+    given-names: Biswajit
+repository-code: "https://github.com/Biswajit1999/Cosmic-Lens-Lab"
+url: "https://biswajit1999.github.io/Cosmic-Lens-Lab/"
+keywords:
+  - "astronomy"
+  - "astrophysics"
+  - "scientific computing"
+  - "gravitational lensing"
+  - "dark matter"
+  - "observational cosmology"
