@@ -375,3 +375,15 @@ GitHub: [@Biswajit1999](https://github.com/Biswajit1999)
 ## License
 
 This project is released under the MIT License. See [`LICENSE`](LICENSE).
+
+## Research evidence and downloads
+
+- [Browse the evidence file index](evidence/manifest.json) or open `evidence.html` from the checkout to inspect previews and downloads.
+- Start with [Readme framegrid caustic breathing](examples/animation/readme-framegrid-caustic-breathing.json), [Readme framegrid subhalo flyby](examples/animation/readme-framegrid-subhalo-flyby.json), [Nfw cluster](examples/cluster/nfw-cluster.json).
+
+Run these commands from the repository root to rebuild the published evidence.
+
+```sh
+python scripts/evidence_catalog.py
+python scripts/render_evidence_page.py
+```
