@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "project": "CosmicLens Lab",
+  "repository": "https://github.com/Biswajit1999/Cosmic-Lens-Lab",
+  "files": [
+    {
+      "label": "Readme framegrid caustic breathing",
+      "path": "examples/animation/readme-framegrid-caustic-breathing.json",
+      "role": "Data and provenance",
+      "bytes": 917,
+      "sha256": "353d9b06fb2c74bef367f6a470392f8d74b48ab1ed2658ead1aeaeffadad5553",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport",
+        "animation"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Readme framegrid subhalo flyby",
+      "path": "examples/animation/readme-framegrid-subhalo-flyby.json",
+      "role": "Data and provenance",
+      "bytes": 1064,
+      "sha256": "df5004d47a820a994165f543d830f3246d3f431590b1763e3476703ebac6ad4d",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport",
+        "animation"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Nfw cluster",
+      "path": "examples/cluster/nfw-cluster.json",
+      "role": "Data and provenance",
+      "bytes": 719,
+      "sha256": "b9dd9c5329dcdc790bda0a2ab4b110d6d88a5f62dd5851e4a1bff09791322e12",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Time delay sandbox",
+      "path": "examples/cosmography/time-delay-sandbox.json",
+      "role": "Data and provenance",
+      "bytes": 685,
+      "sha256": "f1cf236f685b3eb2d6c8c77b4e491b043c80d49648a7ba0c3833075bd8849f23",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Composite sersic nfw",
+      "path": "examples/galaxy/composite-sersic-nfw.json",
+      "role": "Data and provenance",
+      "bytes": 1023,
+      "sha256": "bc64488ff476109cf95276529ee90fb210470c75203ee25c16bf53c4e0d03759",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Sie quad",
+      "path": "examples/galaxy/sie-quad.json",
+      "role": "Data and provenance",
+      "bytes": 772,
+      "sha256": "5cec8444e0b8288861b8179b756beb0c77d19b14c9b30fc15f5d6d5394bfc952",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Subhalo anomaly",
+      "path": "examples/galaxy/subhalo-anomaly.json",
+      "role": "Data and provenance",
+      "bytes": 939,
+      "sha256": "80a5174c34473049e231fed81d6408aeeebf3dc94cc0e3551528e7c3fba158d4",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Point mass ring",
+      "path": "examples/textbook/point-mass-ring.json",
+      "role": "Data and provenance",
+      "bytes": 588,
+      "sha256": "42d8eb72aa860872d2cc376dc14e78644fbde3694549006cd82af87276f223e8",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    },
+    {
+      "label": "Sis double",
+      "path": "examples/textbook/sis-double.json",
+      "role": "Data and provenance",
+      "bytes": 579,
+      "sha256": "6e7433164ca66d1f466f9112da0cb276dfdf5d91933ab713c47d9de9f6ae116d",
+      "hash_basis": "LF-normalised text",
+      "format": "JSON",
+      "keys": [
+        "version",
+        "name",
+        "cosmology",
+        "planes",
+        "source",
+        "viewport"
+      ],
+      "arrays": {
+        "planes": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "project": "CosmicLens Lab",
+  "repository": "https://github.com/Biswajit1999/Cosmic-Lens-Lab",
+  "files": [
+    {
+      "label": "Readme framegrid caustic breathing",
+      "path": "examples/animation/readme-framegrid-caustic-breathing.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Readme framegrid subhalo flyby",
+      "path": "examples/animation/readme-framegrid-subhalo-flyby.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Nfw cluster",
+      "path": "examples/cluster/nfw-cluster.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Time delay sandbox",
+      "path": "examples/cosmography/time-delay-sandbox.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Composite sersic nfw",
+      "path": "examples/galaxy/composite-sersic-nfw.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Sie quad",
+      "path": "examples/galaxy/sie-quad.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Subhalo anomaly",
+      "path": "examples/galaxy/subhalo-anomaly.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Point mass ring",
+      "path": "examples/textbook/point-mass-ring.json",
+      "role": "Data and provenance"
+    },
+    {
+      "label": "Sis double",
+      "path": "examples/textbook/sis-double.json",
+      "role": "Data and provenance"
+    }
+  ]
+}
